@@ -1,0 +1,19 @@
+class Solution
+{
+    public:
+   Node * removeDuplicates( Node *head){
+       unordered_set<int> st;
+       Node *prev=NULL, *current=head;
+       while(current!=NULL){
+           if(st.find(current->data)!=st.end()){
+               prev->next=current->next;
+           }
+           else{
+               st.insert(current->data);
+               prev=current;
+           }
+           current=current->next;
+       }
+       return head;
+   }
+};
