@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void reorderList(ListNode* head) {
+	    //Find mid of linked list using fast and slow pointer
+        ListNode* slow=head, *fast=head;
+        while(fast!=NULL && fast->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+		//Reverse all the links of the nodes after the middle node
+        ListNode *prev=slow;
+        slow=slow->next;
+        prev->next=NULL;
+        while(slow)
+        {
+            ListNode *temp=slow->next;
+            slow->next=prev;
+            prev=slow;
+            slow=temp;
+        }
+		//Place the fast pointer on head and slow pointer at the end node
+		fast=head;
+        slow=prev;
+		//Put the slow node in between fast and fast->next alternatively 
+        while(slow->next)
+        {
+            ListNode *fasttemp=fast->next;
+            ListNode *slowtemp=slow->next;
+            fast->next=slow;
+            slow->next=fasttemp;
+            slow=slowtemp;
+            fast=fasttemp;
+        }
+    }
+};
