@@ -1,0 +1,24 @@
+class Solution {
+    public String reformatDate(String date) {
+        String[] chunks = date.split(" ");
+        StringBuilder sb = new StringBuilder();
+        HashMap<String,String> hm = new HashMap<>();
+        hm.put("Jan","01");
+        hm.put("Feb","02");
+        hm.put("Mar","03");
+        hm.put("Apr","04");
+        hm.put("May","05");
+        hm.put("Jun","06");
+        hm.put("Jul","07");
+        hm.put("Aug","08");
+        hm.put("Sep","09");
+        hm.put("Oct","10");
+        hm.put("Nov","11");
+        hm.put("Dec","12");
+        sb.append(chunks[2] + "-");
+        sb.append(hm.get(chunks[1]) + "-");
+        String dnum = chunks[0]. substring(0, chunks[0].length() - 2);
+        sb.append(dnum.length() < 2 ? "0"+dnum : dnum);
+        return sb.toString();
+    }
+}
