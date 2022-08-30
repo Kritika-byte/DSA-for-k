@@ -1,0 +1,28 @@
+class MyHashMap {
+public:
+    map<int,int>a; 
+    MyHashMap() {
+      
+    }
+    
+    void put(int key, int value) {
+        a[key]=value;
+    }
+    
+    int get(int key) {
+        auto t=a.find(key);
+        
+        if(t!=a.end())
+        {
+            return a[key];
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    
+    void remove(int key) {
+        a.erase(key);
+    }
+};
