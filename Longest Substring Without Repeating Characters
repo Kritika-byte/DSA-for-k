@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        vector<int> v(256, 0); // vector to store ascii values of characters
+        int start = 0, lString = 0;
+        for (int end = 0; end < s.length(); end++)
+        {
+            v[s[end]]++;
+            // if the value of the character is greater than 1, then it means that the character is present in the substring
+            // and we need to update the start index to the next index after the current index
+            // and reset the value of the character to 0 upto the current index
+            while (v[s[end]] > 1)
+            {
+
+                v[s[start]]--;
+                start++;
+            }
+            lString = max(lString, end - start + 1); // compare current length with previous max length
+        }
+        return lString;
+    }
+};
