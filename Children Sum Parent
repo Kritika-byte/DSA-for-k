@@ -1,0 +1,20 @@
+class Tree
+{
+    int isSumProperty(Node root)
+    {
+       
+        if(root == null || (root.left == null & root.right == null))
+        return 1;
+        int left_sum=0, right_sum=0;
+        if(root.left!=null)
+        left_sum += root.left.data;
+        if(root.right != null)
+        right_sum += root.right.data;
+        
+        if(root.data == (left_sum+right_sum))
+        return (isSumProperty(root.left) & isSumProperty(root.right));
+        else
+        return 0;
+        
+    }
+}
