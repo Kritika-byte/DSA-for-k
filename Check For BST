@@ -1,0 +1,13 @@
+public class Solution
+{
+    boolean isBST(Node root)
+    {
+        return isBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    boolean isBST(Node root, long minVal, long maxVal)
+    {
+        if(root==null) return true;
+        if(root.data >= maxVal || root.data <= minVal) return false;
+        return isBST(root.left, minVal, root.data) && isBST(root.right, root.data, maxVal);
+    }
+}
