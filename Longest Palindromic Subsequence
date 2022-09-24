@@ -1,0 +1,28 @@
+class Solution{
+  public:
+  int dp[1002][1002];
+    int solve(int n,int m,string s1,string s2){
+        if(n==0 || m==0)
+            return 0;
+        if(dp[n][m]!=-1)
+            return dp[n][m];
+        if(s1[n-1]==s2[m-1])
+            return dp[n][m]=1+solve(n-1,m-1,s1,s2);
+        else
+        {
+            return dp[n][m]=max(solve(n,m-1,s1,s2),solve(n-1,m,s1,s2));
+        }
+    }
+    int longestPalinSubseq(string s) {
+               int i,j,k,n=s.size();
+        string s2;
+       
+       for(i=n-1;i>=0;i--)
+       {
+           s2.push_back(s[i]);
+       }
+        memset(dp,-1,sizeof(dp));
+        return solve(n,n,s,s2);
+        
+    }
+};
