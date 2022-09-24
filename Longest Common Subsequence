@@ -1,0 +1,20 @@
+import static java.lang.Math.*;
+class Solution {
+    Integer[][] dp = new Integer[1001][1001];
+    public int longestCommonSubsequence(String text1, String text2) {
+        int n = text1.length();
+        int m = text2.length();
+        char[] a = text1.toCharArray();
+        char[] b = text2.toCharArray();
+        helper(a,b,n,m);
+        return dp[n][m];
+    }
+    int helper(char[] a,char[] b,int n,int m){
+        if(n == 0 || m == 0)return 0;
+        if(dp[n][m] != null)return dp[n][m];
+        if(a[n-1] == b[m-1])
+            return dp[n][m] =  1+helper(a,b,n-1,m-1);
+        else
+            return  dp[n][m] = max(helper(a,b,n,m-1),helper(a,b,n-1,m));
+    }
+}
