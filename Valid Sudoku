@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board)
+    {
+    int row = 9;
+        int col = 9;
+        
+        // to check 3x3 boards
+        unordered_map<string, set<char>> hmapBoard;
+        // to check every row
+        unordered_map<int, set<char>> hmapRow;
+        // to check every column
+        unordered_map<int, set<char>> hmapCol;
+        
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < col; j++) {
+                if(board[i][j] == '.')
+                    continue;
+                
+                string key = to_string(i / 3) + to_string(j / 3);
+                if(hmapRow[i].count(board[i][j]) || hmapCol[j].count(board[i][j]) || hmapBoard[key].count(board[i][j]))
+                    return false;
+                
+                hmapRow[i].insert(board[i][j]);
+                hmapCol[j].insert(board[i][j]);
+                hmapBoard[key].insert(board[i][j]);
+            }
+        }
+        return true;
+    }
+};
